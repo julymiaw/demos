@@ -1,7 +1,5 @@
 #include <iostream>
 #include <random>
-#include <ctime>
-#include <cmath>
 
 using namespace std;
 class Polynomial

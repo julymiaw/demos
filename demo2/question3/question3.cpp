@@ -1,8 +1,11 @@
-#include <windows.h>
-#include "polynomial.h"
-#include <fstream>
+#include <windows.h>    // 设置终端编码为UTF8
+#include "polynomial.h" // 提供多项式基本操作
+#include <ctime>        // clock_t类型和clock()方法
+#include <cmath>        // pow函数
+#include <fstream>      // 文件的打开，关闭和写入
 using namespace std;
 
+// 使用迭代法公式1
 double Polynomial::F1a(double x)
 {
     double y = 0;
@@ -11,11 +14,13 @@ double Polynomial::F1a(double x)
     return y;
 }
 
+// 使用递归法公式1
 double Polynomial::F1b(double x, int index)
 {
     return index < terms ? coefArray[index] * pow(x, terms - index - 1) + F1b(x, index + 1) : 0;
 }
 
+// 使用迭代法公式2
 double Polynomial::F2a(double x)
 {
     double y = 0;
@@ -24,11 +29,13 @@ double Polynomial::F2a(double x)
     return y;
 }
 
+// 使用递归法公式2
 double Polynomial::F2b(double x, int index)
 {
     return index < terms ? F2b(x, index + 1) * x + coefArray[terms - index - 1] : 0;
 }
 
+// 公式3
 double F3(int n, double x)
 {
     double y = 1;
@@ -39,6 +46,7 @@ double F3(int n, double x)
     return y;
 }
 
+// 根据索引值调用对应算法
 double algorithms(Polynomial &f, double x, int index)
 {
     switch (index)
@@ -52,7 +60,7 @@ double algorithms(Polynomial &f, double x, int index)
     case 3:
         return f.F2b(x);
     default:
-        cout << "程序错误" << endl;
+        cout << "非法索引" << endl;
         return -1;
     }
 }
@@ -61,7 +69,18 @@ int main()
 {
     SetConsoleOutputCP(65001);
     // 第一题
-    cout << "取x=1.1,计算f3(x)的值:" << F3(6, 1.1) << endl;
+    cout << "取x=1.1,计算f3(x)的值:\n"
+         << "n的取值\t";
+    for (int i = 0; i < 10; i++)
+    {
+        cout << i << "\t";
+    }
+    cout << "\n结果\t";
+    for (int i = 0; i < 10; i++)
+    {
+        cout << F3(i, 1.1) << "\t";
+    }
+    cout << endl;
 
     // 第二题
     int n = 6;
