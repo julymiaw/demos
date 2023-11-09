@@ -1,3 +1,4 @@
+#include <windows.h>
 #include <iostream>
 #include <unordered_map>
 
@@ -43,6 +44,8 @@ int count(const char *text, char x)
 
 int main()
 {
+    SetConsoleOutputCP(65001);
+
     const char *x = "Hello,world!";
     count(x);
     count(x, 'l');

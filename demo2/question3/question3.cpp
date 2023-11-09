@@ -3,6 +3,8 @@
 #include <ctime>        // clock_t类型和clock()方法
 #include <cmath>        // pow函数
 #include <fstream>      // 文件的打开，关闭和写入
+#include <thread>
+#include <chrono>
 using namespace std;
 
 // 使用迭代法公式1
@@ -108,6 +110,9 @@ int main()
         int n = n_values[j];
         Polynomial f(n); // 创建一个Polynomial对象
         Polynomials[j] = f;
+        cout << "已生成长度为" << n << "的多项式: " << f << endl;
+        // 暂停1秒
+        this_thread::sleep_for(chrono::seconds(1));
     }
 
     // 打开一个文件以写入数据
@@ -136,12 +141,12 @@ int main()
         for (int j = 0; j < sizeof(n_values) / sizeof(int); j++)
         {
             double total_time = 0.0;
-            int num_iterations = 10000000; // 调整迭代次数
+            int num_iterations = 1000000; // 调整迭代次数
             int times = sizeof(x_values) / sizeof(double);
             cout << "正在计算第" << i + 1 << "行, 第" << j + 1 << "列。请耐心等待……" << endl;
             // 遍历选取的每一个x值
             for (int t = 0; t < times; t++)
-                // 迭代10^7次
+                // 迭代10^4次
                 for (int k = 0; k < num_iterations; k++)
                 {
                     clock_t start_time = clock();
@@ -165,5 +170,6 @@ int main()
     outputFile.close();
 
     cout << "数据已写入文件" << endl;
+    cin.get();
     return 0;
 }
