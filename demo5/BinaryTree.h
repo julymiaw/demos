@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 
 struct TreeNode
 {
@@ -12,7 +11,7 @@ struct TreeNode
 class BinaryTree
 {
 public:
-    BinaryTree() : root(nullptr) {}
+    BinaryTree(TreeNode *node = nullptr) : root(node) {}
 
     void insert(int val)
     {
@@ -50,6 +49,17 @@ public:
         inorder(root);
     }
 
+    void preorder()
+    {
+        preorder(root);
+    }
+
+    int depth();
+
+    bool right();
+
+    void reverse();
+
 private:
     void inorder(TreeNode *node)
     {
@@ -58,9 +68,26 @@ private:
             return;
         }
         inorder(node->left);
-        cout << node->val << " ";
+        std::cout << node->val << " ";
         inorder(node->right);
     }
+
+    void preorder(TreeNode *node)
+    {
+        if (!node)
+        {
+            return;
+        }
+        std::cout << node->val << " ";
+        preorder(node->left);
+        preorder(node->right);
+    }
+
+    int depth(TreeNode *node);
+
+    void reverse(TreeNode *node);
+
+    TreeNode *right(TreeNode *node);
 
     TreeNode *root;
 };
