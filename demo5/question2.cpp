@@ -29,6 +29,16 @@ TreeNode *BinaryTree::right(TreeNode *node)
     return node;
 }
 
+void BinaryTree::showQuestion2()
+{
+    TreeNode *t = root;
+    while (t != nullptr)
+    {
+        std::cout << t->val << ' ';
+        t = t->right;
+    }
+}
+
 int main()
 {
     BinaryTree x;
@@ -40,5 +50,5 @@ int main()
     x.inorder();
     printf("\n");
     x.right();
-    x.inorder();
+    x.showQuestion2();
 }

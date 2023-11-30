@@ -60,6 +60,8 @@ public:
 
     void reverse();
 
+    void showQuestion2();
+
 private:
     void inorder(TreeNode *node)
     {
